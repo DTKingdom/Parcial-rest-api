@@ -18,7 +18,7 @@ router.get('/estudiantes', (req, res) => {
 //Leer
 router.get('/estudiantes/:id', (req, res) => {
     console.log('get estudiantes')
-    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join estudiante ON persona.id = estudiante.id_persona where persona.id = ?', [req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join estudiante ON persona.id = estudiante.id_persona where estudiante.id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {

@@ -32,7 +32,7 @@ router.post('/persona', (req, res) => {
     let per = req.body;
     console.log('insert persona')
     mysqlConnection.query('insert into wwpcyt9y8klyvijr.persona (nombre, apellido, fecha_nacimiento, Direccion) values (?,?,?,?)',
-        [per.nombre, per.aperllido, per.fecha_nacimiento, per.Direccion], (err, result) => {
+        [per.nombre, per.apellido, per.fecha_nacimiento, per.Direccion], (err, result) => {
             if (!err) {
                 res.send('Creado');
             } else {

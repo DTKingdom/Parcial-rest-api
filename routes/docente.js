@@ -29,7 +29,7 @@ router.get('/maestros/:id', (req, res) => {
 
 //Crear
 router.post('/maestros', (req, res) => {
-    let dec = req.body;
+    let doc = req.body;
     console.log('insert maestros')
     mysqlConnection.query('insert into wwpcyt9y8klyvijr.docente (id_persona, fecha_ingreso) values (?,?)',
         [doc.id_persona, doc.fecha_ingreso], (err, result) => {

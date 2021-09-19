@@ -1,7 +1,10 @@
+const express = require('express');
+const router = express.Router();
 
+const mysqlConnection = require('../bd/db-config');
 
 //get
-app.get('/docente', (req, res) => {
+router.get('/docente', (req, res) => {
     console.log('get docente')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.docente', (err, rows, fields) => {
         if (!err) {
@@ -13,7 +16,7 @@ app.get('/docente', (req, res) => {
 });
 
 //Leer
-app.get('/docente/:id', (req, res) => {
+router.get('/docente/:id', (req, res) => {
     console.log('get docente')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.docente where id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
@@ -25,7 +28,7 @@ app.get('/docente/:id', (req, res) => {
 });
 
 //Crear
-app.post('/docente', (req, res) => {
+router.post('/docente', (req, res) => {
     let dec = req.body;
     console.log('insert docente')
     mysqlConnection.query('insert into wwpcyt9y8klyvijr.docente (id_persona, fecha_ingreso) values (?,?)',

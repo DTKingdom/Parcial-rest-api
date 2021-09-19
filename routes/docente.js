@@ -4,8 +4,8 @@ const router = express.Router();
 const mysqlConnection = require('../bd/db-config');
 
 //get
-router.get('/docente', (req, res) => {
-    console.log('get docente')
+router.get('/maestros', (req, res) => {
+    console.log('get maestros')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.docente', (err, rows, fields) => {
         if (!err) {
             res.send(rows);
@@ -16,8 +16,8 @@ router.get('/docente', (req, res) => {
 });
 
 //Leer
-router.get('/docente/:id', (req, res) => {
-    console.log('get docente')
+router.get('/maestros/:id', (req, res) => {
+    console.log('get maestros')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.docente where id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
@@ -28,9 +28,9 @@ router.get('/docente/:id', (req, res) => {
 });
 
 //Crear
-router.post('/docente', (req, res) => {
+router.post('/maestros', (req, res) => {
     let dec = req.body;
-    console.log('insert docente')
+    console.log('insert maestros')
     mysqlConnection.query('insert into wwpcyt9y8klyvijr.docente (id_persona, fecha_ingreso) values (?,?)',
         [doc.id_persona, doc.fecha_ingreso], (err, result) => {
             if (!err) {
@@ -43,8 +43,8 @@ router.post('/docente', (req, res) => {
 });
 
 //Actualizar
-router.put("/docente/:id", (req, res) => {
-    console.log("update docente");
+router.put("/maestros/:id", (req, res) => {
+    console.log("update maestros");
     let doc = req.body;
     console.log(doc);
     mysqlConnection.query('update wwpcyt9y8klyvijr.docente set id_persona = ?, fecha_ingreso = ? where id = ?',
@@ -61,8 +61,8 @@ router.put("/docente/:id", (req, res) => {
 });
 
 //Eliminar
-router.delete("/docente/:id", (req, res) => {
-    console.log("update docente ");
+router.delete("/maestros/:id", (req, res) => {
+    console.log("update maestros ");
     mysqlConnection.query('delete from wwpcyt9y8klyvijr.docente where id = ?',
         [req.params.id], (err, result) => {
             if (!err) {

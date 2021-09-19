@@ -4,7 +4,7 @@ const router = express.Router();
 const mysqlConnection = require('../bd/db-config');
 
 //get
-router.get('/estudiante', (req, res) => {
+router.get('/estudiantes', (req, res) => {
     console.log('get estudiantes')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.estudiante', (err, rows, fields) => {
         if (!err) {
@@ -16,8 +16,8 @@ router.get('/estudiante', (req, res) => {
 });
 
 //Leer
-router.get('/estudiante/:id', (req, res) => {
-    console.log('get estudiante')
+router.get('/estudiantes/:id', (req, res) => {
+    console.log('get estudiantes')
     mysqlConnection.query('Select * from wwpcyt9y8klyvijr.estudiante where id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
@@ -28,9 +28,9 @@ router.get('/estudiante/:id', (req, res) => {
 });
 
 //Crear
-router.post('/estudiante', (req, res) => {
+router.post('/estudiantes', (req, res) => {
     let est = req.body;
-    console.log('insert estudiante')
+    console.log('insert estudiantes')
     mysqlConnection.query('insert into wwpcyt9y8klyvijr.estudiante (id_persona, fecha_ingreso, carnet, status) values (?,?,?,?)',
         [est.id_persona, est.fecha_ingreso, est.carnet, est.status], (err, result) => {
             if (!err) {
@@ -43,8 +43,8 @@ router.post('/estudiante', (req, res) => {
 });
 
 //Actualizar
-router.put("/estudiante/:id", (req, res) => {
-    console.log("update estudiante");
+router.put("/estudiantes/:id", (req, res) => {
+    console.log("update estudiantes");
     let est = req.body;
     console.log(est);
     mysqlConnection.query('update wwpcyt9y8klyvijr.estudiante set id_persona = ?, fecha_ingreso = ?, carnet = ?, status = ? where id = ?',
@@ -61,8 +61,8 @@ router.put("/estudiante/:id", (req, res) => {
 });
 
 //Eliminar
-router.delete("/estudiante/:id", (req, res) => {
-    console.log("update estudiante ");
+router.delete("/estudiantes/:id", (req, res) => {
+    console.log("update estudiantes ");
     mysqlConnection.query('delete from wwpcyt9y8klyvijr.estudiante where id = ?',
         [req.params.id], (err, result) => {
             if (!err) {

@@ -32,8 +32,8 @@ router.get('/curso_docente/:id', (req, res) => {
 router.post('/curso_docente', (req, res) => {
     let cdoc = req.body;
     console.log('insert curso_docente')
-    mysqlConnection.query('insert into wwpcyt9y8klyvijr.curso_docente (id_docente, d_curso, status, fecha_inicio,fecha_fin ) values (?,?,?,?,?)',
-        [cdoc.id_docente, cdoc.d_curso, cdoc.status, cdoc.fecha_inicio, cdoc.fecha_fin], (err, result) => {
+    mysqlConnection.query('insert into wwpcyt9y8klyvijr.curso_docente (id_docente, id_curso, status, fecha_inicio,fecha_fin ) values (?,?,?,?,?)',
+        [cdoc.id_docente, cdoc.id_curso, cdoc.status, cdoc.fecha_inicio, cdoc.fecha_fin], (err, result) => {
             if (!err) {
                 res.send('Creado');
             } else {

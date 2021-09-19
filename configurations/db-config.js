@@ -1,9 +1,21 @@
-const host= "j8oay8teq9xaycnm.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-const user= "p3u55u0nuazag777";
-const password= "i3tivaaoxudqf4jn";
-const database= "wwpcyt9y8klyvijr";
 
-exports.host=host;
-exports.user=user;
-exports.password=password;
-exports.database=database;
+const mysql = require('mysql');
+
+const mysqlConnection = mysql.createConnection({
+  host: 'j8oay8teq9xaycnm.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user: 'p3u55u0nuazag777',
+  password: 'i3tivaaoxudqf4jn',
+  database: 'wwpcyt9y8klyvijr',
+  multipleStatements: true
+});
+
+mysqlConnection.connect(function (err) {
+  if (err) {
+    console.error(err);
+    return;
+  } else {
+    console.log('db is connected');
+  }
+});
+
+module.exports = mysqlConnection;

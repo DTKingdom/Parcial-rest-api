@@ -1,20 +1,18 @@
-const mysql = require('mysql');
 const express = require('express');
-const bodyParser = require('body-parser');
+const app = express();
 
-var app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+app.set('port', process.env.PORT || 3000);
 
-var mysqlConnection = mysql.createConnection({
-    host: dbConf.host,
-    user: dbConf.user,
-    password: dbConf.password,
-    database: dbConf.database
-});
-
-
-
+//routes
+app.use(require('./routes/persona'));
+app.use(require('./routes/estudiante_curso'));
+app.use(require('./routes/docente'));
+app.use(require('./routes/estudiante'));
+app.use(require('./routes/curso_docente'));
+app.use(require('./routes/curso'));
 
 
-
-app.listen(process.env.PORT ||3000);
+app.listen(app.get('port'), () => {
+    console.log(`Server on port ${app.get('port')}`);
+  });

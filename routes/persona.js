@@ -41,3 +41,5 @@ router.post('/persona', (req, res) => {
             }
         })
 });
+
+module.exports = router;

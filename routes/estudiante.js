@@ -41,3 +41,40 @@ router.post('/estudiante', (req, res) => {
             }
         })
 });
+
+//Actualizar
+router.put("/estudiante/:id", (req, res) => {
+    console.log("update estudiante");
+    let est = req.body;
+    console.log(est);
+    mysqlConnection.query('update wwpcyt9y8klyvijr.estudiante set id_persona = ?, fecha_ingreso = ?, carnet = ?, status = ? where id = ?',
+        [est.id_persona, est.fecha_ingreso,est.carnet, est.status, req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Actualizado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+//Eliminar
+router.delete("/estudiante/:id", (req, res) => {
+    console.log("update estudiante ");
+    mysqlConnection.query('delete from wwpcyt9y8klyvijr.estudiante where id = ?',
+        [req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Eliminado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+
+module.exports = router;

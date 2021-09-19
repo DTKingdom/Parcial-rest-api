@@ -42,4 +42,40 @@ router.post('/persona', (req, res) => {
         })
 });
 
+//Actualizar
+router.put("/persona/:id", (req, res) => {
+    console.log("update persona");
+    let per = req.body;
+    console.log(per);
+    mysqlConnection.query('update wwpcyt9y8klyvijr.persona set nombre = ?, apellido = ?, fecha_nacimiento = ?, Direccion=? where id = ?',
+        [per.nombre, per.apellido, per.fecha_nacimiento, per.Direccion, req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Actualizado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+//Eliminar
+router.delete("/persona/:id", (req, res) => {
+    console.log("update persona ");
+    mysqlConnection.query('delete from wwpcyt9y8klyvijr.persona where id = ?',
+        [req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Eliminado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+
+
 module.exports = router;

@@ -41,3 +41,6 @@ router.post('/curso', (req, res) => {
             }
         })
 });
+
+
+module.exports = router;

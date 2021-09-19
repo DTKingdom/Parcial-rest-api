@@ -41,3 +41,40 @@ router.post('/docente', (req, res) => {
             }
         })
 });
+
+//Actualizar
+router.put("/docente/:id", (req, res) => {
+    console.log("update docente");
+    let doc = req.body;
+    console.log(doc);
+    mysqlConnection.query('update wwpcyt9y8klyvijr.docente set id_persona = ?, fecha_ingreso = ? where id = ?',
+        [doc.id_persona, doc.fecha_ingreso, req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Actualizado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+//Eliminar
+router.delete("/docente/:id", (req, res) => {
+    console.log("update docente ");
+    mysqlConnection.query('delete from wwpcyt9y8klyvijr.docente where id = ?',
+        [req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Eliminado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+
+module.exports = router;

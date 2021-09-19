@@ -41,3 +41,24 @@ router.post('/estudiante_curso', (req, res) => {
             }
         })
 });
+
+router.put("/estudiante_curso/:id", (req, res) => {
+    console.log("update estudiante_curso");
+    let estc = req.body;
+    console.log(estc);
+    mysqlConnection.query('update wwpcyt9y8klyvijr.estudiante_curso set id_estudiante = ?, id_curso = ?, status = ?, fecha_inicio =?, fecha_fin =? where id = ?',
+        [estc.id_estudiante, estc.id_curso, estc.status, estc.fecha_inicio, estc.fecha_fin, req.params.id], (err, result) => {
+            if (!err) {
+                console.log(result);
+
+                res.status(202).send("Actualizado");
+            } else {
+                console.log(err);
+                res.send('error' + err);
+            }
+        });
+});
+
+
+
+module.exports = router;

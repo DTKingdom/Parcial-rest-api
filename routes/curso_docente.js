@@ -42,3 +42,5 @@ router.post('/curso_docente', (req, res) => {
             }
         })
 });
+
+module.exports = router;

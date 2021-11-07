@@ -31,8 +31,8 @@ router.get('/personas/:id', (req, res) => {
 router.post('/personas', (req, res) => {
     let per = req.body;
     console.log('insert personas')
-    mysqlConnection.query('insert into wwpcyt9y8klyvijr.persona (nombre, apellido, fecha_nacimiento, Direccion) values (?,?,?,?)',
-        [per.nombre, per.apellido, per.fecha_nacimiento, per.Direccion], (err, result) => {
+    mysqlConnection.query('insert into wwpcyt9y8klyvijr.persona (nombre, apellido, fecha_nacimiento, direccion) values (?,?,?,?)',
+        [per.nombre, per.apellido, per.fecha_nacimiento, per.direccion], (err, result) => {
             if (!err) {
                 res.send('Creado');
             } else {
@@ -47,8 +47,8 @@ router.put("/personas/:id", (req, res) => {
     console.log("update personas");
     let per = req.body;
     console.log(per);
-    mysqlConnection.query('update wwpcyt9y8klyvijr.persona set nombre = ?, apellido = ?, fecha_nacimiento = ?, Direccion=? where id = ?',
-        [per.nombre, per.apellido, per.fecha_nacimiento, per.Direccion, req.params.id], (err, result) => {
+    mysqlConnection.query('update wwpcyt9y8klyvijr.persona set nombre = ?, apellido = ?, fecha_nacimiento = ?, direccion=? where id = ?',
+        [per.nombre, per.apellido, per.fecha_nacimiento, per.direccion, req.params.id], (err, result) => {
             if (!err) {
                 console.log(result);
 

@@ -18,7 +18,7 @@ router.get('/estudiantes', (req, res) => {
 //Leer
 router.get('/estudiantes/:id', (req, res) => {
     console.log('get estudiantes')
-    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join estudiante ON persona.id = estudiante.id_persona where estudiante.id = ?', [req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join estudiante ON persona.id = estudiante.idpersona where estudiante.id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {
@@ -31,8 +31,8 @@ router.get('/estudiantes/:id', (req, res) => {
 router.post('/estudiantes', (req, res) => {
     let est = req.body;
     console.log('insert estudiantes')
-    mysqlConnection.query('insert into wwpcyt9y8klyvijr.estudiante (id_persona, fecha_ingreso, carnet, status) values (?,?,?,?)',
-        [est.id_persona, est.fecha_ingreso, est.carnet, est.status], (err, result) => {
+    mysqlConnection.query('insert into wwpcyt9y8klyvijr.estudiante (idpersona, fecha_ingreso, carnet, status) values (?,?,?,?)',
+        [est.idpersona, est.fecha_ingreso, est.carnet, est.status], (err, result) => {
             if (!err) {
                 res.send('Creado');
             } else {
@@ -47,8 +47,8 @@ router.put("/estudiantes/:id", (req, res) => {
     console.log("update estudiantes");
     let est = req.body;
     console.log(est);
-    mysqlConnection.query('update wwpcyt9y8klyvijr.estudiante set id_persona = ?, fecha_ingreso = ?, carnet = ?, status = ? where id = ?',
-        [est.id_persona, est.fecha_ingreso,est.carnet, est.status, req.params.id], (err, result) => {
+    mysqlConnection.query('update wwpcyt9y8klyvijr.estudiante set idpersona = ?, fecha_ingreso = ?, carnet = ?, status = ? where id = ?',
+        [est.idpersona, est.fecha_ingreso,est.carnet, est.status, req.params.id], (err, result) => {
             if (!err) {
                 console.log(result);
 

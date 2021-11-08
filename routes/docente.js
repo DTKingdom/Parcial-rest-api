@@ -18,7 +18,7 @@ router.get('/maestros', (req, res) => {
 //Leer
 router.get('/maestros/:id', (req, res) => {
     console.log('get maestros')
-    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join docente ON persona.id = docente.id_persona where docente.id = ?', [req.params.id], (err, rows, fields) => {
+    mysqlConnection.query('Select nombre,apellido,fecha_nacimiento,Direccion from persona Inner Join docente ON persona.id = docente.idpersona where docente.id = ?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send(rows);
         } else {
@@ -31,8 +31,8 @@ router.get('/maestros/:id', (req, res) => {
 router.post('/maestros', (req, res) => {
     let doc = req.body;
     console.log('insert maestros')
-    mysqlConnection.query('insert into wwpcyt9y8klyvijr.docente (id_persona, fecha_ingreso) values (?,?)',
-        [doc.id_persona, doc.fecha_ingreso], (err, result) => {
+    mysqlConnection.query('insert into wwpcyt9y8klyvijr.docente (idpersona, fecha_ingreso) values (?,?)',
+        [doc.idpersona, doc.fecha_ingreso], (err, result) => {
             if (!err) {
                 res.send('Creado');
             } else {
@@ -47,8 +47,8 @@ router.put("/maestros/:id", (req, res) => {
     console.log("update maestros");
     let doc = req.body;
     console.log(doc);
-    mysqlConnection.query('update wwpcyt9y8klyvijr.docente set id_persona = ?, fecha_ingreso = ? where id = ?',
-        [doc.id_persona, doc.fecha_ingreso, req.params.id], (err, result) => {
+    mysqlConnection.query('update wwpcyt9y8klyvijr.docente set idpersona = ?, fecha_ingreso = ? where id = ?',
+        [doc.idpersona, doc.fecha_ingreso, req.params.id], (err, result) => {
             if (!err) {
                 console.log(result);
 
